@@ -4,4 +4,4 @@ from django.shortcuts import render
 # Create your views here.
 
 def wasdenn (request):
-    return HttpResponse('scheisse')
+    return render(request, 'accountapp/MOINMOIN.html')
