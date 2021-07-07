@@ -10,19 +10,18 @@
            height: 48px;
            width: 48px;
            border-radius: .5rem;
+           display: inline-block;
        }
 
 
-    </style>
-    <div style = "height: 20rem; background:lavender; margin:2rem; border-radius:1rem;">
-    <h1>schoenes Wochenende!</h1>
-
-    <div class=testing style="display: block">block</div>
-    <div class=testing style="display:inline">inline</div>
-    <div class=testing style="display:inline-block">inline-block</div>
-    <div class=testing style="display:none">none</div>
-    <div class="testing">default</div>
-
+   </style>
+    <div style = "height: 20rem; background:lavender; margin:2rem;
+    border-radius:1rem; font-size: 2rem">
+       <h1>im Deutschland</h1>
+       <div class=testing style="height: 48px; width: 48px">hallo</div>
+       <div class=testing style="height: 3em; width: 3em">block</div>
+       <div class=testing style="height: 3rem; width: 3rem">block</div>
+       <div class=testing style="height: 30%; width: 30%">block</div>
     </div>
 
 {% endblock %}
