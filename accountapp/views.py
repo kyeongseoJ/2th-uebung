@@ -13,7 +13,7 @@ def wasdenn(request):
         new_moinmoin.text = temp
         new_moinmoin.save()
 
-           return render(request, 'accountapp/MOINMOIN.html',
+        return render(request, 'accountapp/MOINMOIN.html',
                          context={'moinmoin_output':new_moinmoin})
     else:
            return render(request,'accountapp/MOINMOIN.html',
