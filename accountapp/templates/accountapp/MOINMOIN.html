@@ -4,7 +4,14 @@
 
     <div style="margin:2rem;text-align: center">
         <h1> METHOD </h1>
-        <h3>{{ text }}</h3>
+
+        <form action="/accounts/wasdenn/" method="post">
+            {% csrf_token %}
+            <input type="text" name="moinmoin_input" >
+            <input type="submit" class="px-5 btn btn-dark rounded-pill">
+        </form>
+
+        <h3>{{ moinmoin_output.text }}</h3>
 
     </div>
 
