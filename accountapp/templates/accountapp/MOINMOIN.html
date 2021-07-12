@@ -10,8 +10,9 @@
             <input type="text" name="moinmoin_input" >
             <input type="submit" class="px-5 btn btn-dark rounded-pill">
         </form>
-
-        <h3>{{ moinmoin_output.text }}</h3>
+         {% for moinmoin in MoinMoin_list %}
+            <h3>{{ moinmoin.text }}</h3>
+         {% endfor %}
 
     </div>
 
