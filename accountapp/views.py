@@ -5,25 +5,32 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.urls import reverse, reverse_lazy
-from django.views.generic import CreateView, DetailView, UpdateView
+from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
 
+from accountapp.forms import AccountCreationForm
 from accountapp.models import MoinMoin
 
 def wasdenn(request):
-    if request.method=='POST':
 
-        temp = request.POST.get('moinmoin_input')
+    if request.user.is_authenticated:
 
-        new_moinmoin = MoinMoin()
-        new_moinmoin.text = temp
-        new_moinmoin.save()
+        if request.method=='POST':
 
-        return HttpResponseRedirect(reverse('accountapp:wasdenn'))
+          temp = request.POST.get('moinmoin_input')
 
-    else:
-           MoinMoin_list = MoinMoin.objects.all()
-           return render(request,'accountapp/MOINMOIN.html',
+          new_moinmoin = MoinMoin()
+          new_moinmoin.text = temp
+          new_moinmoin.save()
+
+          return HttpResponseRedirect(reverse('accountapp:wasdenn'))
+
+        else:
+            MoinMoin_list = MoinMoin.objects.all()
+            return render(request,'accountapp/MOINMOIN.html',
                          context={'MoinMoin_list': MoinMoin_list})
+    else:
+        return HttpResponseRedirect(reverse('accountapp:login'))
+
 
 class AccountCreateView(CreateView):
     model = User
@@ -38,13 +45,36 @@ class AccountDetailView(DetailView):
 
 class AccountUpdateView(UpdateView):
     model = User
-    form_class = UserCreationForm
+    form_class = AccountCreationForm
     context_object_name = 'target_user'
     success_url =reverse_lazy('accountapp:wasdenn')
     template_name = 'accountapp/update.html'
 
-class AccountDeleteView(DetailView):
+    def get(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+           return super().get(request, *args, **kwargs)
+        else:
+            return HttpResponseRedirect(reverse('accountapp:login'))
+
+    def post(self, request, *args, **kwargs):
+         if request.user.is_authenticated:
+             return super().post(request, *args, **kwargs)
+         else:
+             return HttpResponseRedirect(reverse('accountapp:login'))
+
+class AccountDeleteView(DeleteView):
     model = User
     context_object_name = 'target_user'
-    success_url =reverse_lazy('accountapp:hello_world')
+    success_url =reverse_lazy('accountapp:wasdenn')
     template_name = 'accountapp/delete.html'
+
+    def get(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+           return super().get(request, *args, **kwargs)
+        else:
+            return HttpResponseRedirect(reverse('accountapp:login'))
+    def post(self, request, *args, **kwargs):
+         if request.user.is_authenticated:
+             return super().post(request, *args, **kwargs)
+         else:
+             return HttpResponseRedirect(reverse('accountapp:login'))
