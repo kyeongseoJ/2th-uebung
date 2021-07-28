@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import CreateView
+from django.views.generic import CreateView, UpdateView
 
 from profileapp.forms import ProfileCreationForm
 from profileapp.models import Profile
@@ -17,3 +17,10 @@ class ProfileCreateView(CreateView):
         form.instance.user = self.request.user
         return super().form_valid(form)
 
+
+class ProfileUpdateView(UpdateView):
+    model = Profile
+    form_class = ProfileCreationForm
+    context_object_name = 'target_profile'
+    success_url = reverse_lazy('accountapp:wasdenn')
+    template_name = 'profileapp/update.html'
