@@ -25,7 +25,7 @@ class ArticleCreateView(CreateView):
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse('articleapp:detail', kwargs={'pk': self.object})
+        return reverse('articleapp:detail', kwargs={'pk': self.object.pk})
 
 
 
@@ -44,7 +44,7 @@ class ArticleUpdateView(UpdateView):
     template_name = 'articleapp/update.html'
 
     def get_success_url(self):
-        return reverse('articleapp:detail', kwargs={'pk': self.object})
+        return reverse('articleapp:detail', kwargs={'pk': self.object.pk})
 
 
 @method_decorator(article_ownership_required, 'get')
