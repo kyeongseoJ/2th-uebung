@@ -22,7 +22,6 @@ class ProjectCreateView(CreateView):
         return reverse('projectapp:detail', kwargs={'pk': self.object.pk})
 
 
-
 class ProjectDetailView(DetailView):
     model = Project
     context_object_name = 'target_project'
