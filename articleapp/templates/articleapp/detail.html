@@ -2,6 +2,10 @@
 
 {% block content %}
 
+<script src="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/js/medium-editor.min.js"></script>
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/css/medium-editor.min.css" type="text/css" media="screen" charset="utf-8">
+
+
     <div class="container text-center">
 
         <div class="my-5">
@@ -27,8 +31,9 @@
             <img src="{{ target_article.image.url }}"
                  alt=""
                  class="article_image">
+
             <div class="article_content">
-            {{ target_article.content }}
+            {{ target_article.content | safe }}
             </div>
 
             {%  if target_article.writer == user %}
@@ -76,5 +81,6 @@
 
     </div>
 
+<script>var editor = new MediumEditor('.editable');</script>
 
 {% endblock %}

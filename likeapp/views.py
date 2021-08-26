@@ -23,7 +23,7 @@ def db_transaction(user, article):
     article.save()
 
     if likeRecord.exists():
-        raise ValidationError('좋아요가 이미 존재합니다.')
+       raise ValidationError('좋아요가 이미 존재합니다.')
     else:
         LikeRecord(user=user, article=article).save()
 
