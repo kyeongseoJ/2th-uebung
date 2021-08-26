@@ -16,23 +16,6 @@ from accountapp.models import MoinMoin
 from articleapp.models import Article
 
 
-@login_required(login_url=reverse_lazy('accountapp:login'))
-def wasdenn(request):
-    if request.method=='POST':
-
-      temp = request.POST.get('moinmoin_input')
-
-      new_moinmoin = MoinMoin()
-      new_moinmoin.text = temp
-      new_moinmoin.save()
-
-      return HttpResponseRedirect(reverse('accountapp:wasdenn'))
-
-    else:
-        MoinMoin_list = MoinMoin.objects.all()
-        return render(request,'accountapp/MOINMOIN.html',
-                     context={'MoinMoin_list': MoinMoin_list})
-
 
 class AccountCreateView(CreateView):
     model = User
@@ -75,5 +58,5 @@ class AccountUpdateView(UpdateView):
 class AccountDeleteView(DeleteView):
     model = User
     context_object_name = 'target_user'
-    success_url =reverse_lazy('accountapp:wasdenn')
+    success_url =reverse_lazy('articleapp:list')
     template_name = 'accountapp/delete.html'
