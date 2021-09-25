@@ -1,5 +1,6 @@
 from .base import *
 
+
 def read_secrets(secret_name):
     file = open('/run/secrets/'+ secret_name)
     secret = file.read()
