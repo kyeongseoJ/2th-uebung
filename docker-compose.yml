@@ -7,7 +7,7 @@ services:
     volumes:
     - gis_1ban_01_static:/data/static/
     - gis_1ban_01_media:/data/media
-    - /home/ubuntu/nginx.conf:/etc/nginx/nginx.conf
+    - /home/kyeongseojeon/nginx.conf:/etc/nginx/nginx.conf
     ports:
     - 80:80
 
