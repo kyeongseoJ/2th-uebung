@@ -47,6 +47,7 @@ volumes:  # 볼륨생성
   gis_1ban_01_static:
   gis_1ban_01_media:
   gis_mariadb:
+  gis_log:
 
 secrets: # 보안키 생성 선언
   MARIADB_USER:
