@@ -2,14 +2,13 @@ from .base import *
 
 
 def read_secrets(secret_name):
-    file = open('/run/secrets/'+ secret_name)
+    file = open('/run/secrets/' + secret_name)
     secret = file.read()
     secret = secret.rstrip().lstrip()
     file.close()
     return secret
 
-# SECURITY WARNING: keep the secret key used in production secret!
-# .yml파일에서 가져오는 시크릿 키 사용
+
 SECRET_KEY = read_secrets('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
