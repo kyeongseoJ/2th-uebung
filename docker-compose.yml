@@ -7,6 +7,7 @@ services:
     volumes:
     - gis_1ban_01_static:/data/static/
     - gis_1ban_01_media:/data/media/
+    - gis_log:/var/log/nginx/
     - /home/kyeongseojeon/nginx.conf:/etc/nginx/nginx.conf
     ports:
     - mode: host
